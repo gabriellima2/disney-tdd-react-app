@@ -1,17 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { mockCharacter } from "../mocks/mock-character";
 
-const Character = (props) => {
-  const { _id, imageUrl, imageAlt, name } = props;
-  return (
-    <li>
-      <a>
-        <img src={imageUrl} alt={imageAlt} />
-        <h1>{name}</h1>
-      </a>
-    </li>
-  )
-}
+import { Character } from ".";
+import { mockCharacter } from "../mocks/mock-character";
 
 const renderComponent = (props) => render(
     <Character {...props} />
