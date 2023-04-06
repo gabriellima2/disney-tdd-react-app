@@ -12,10 +12,10 @@ describe("<Character />", () => {
     it("should render correctly", () => {
       renderComponent(mockCharacter);
 
-      const image = screen.getByAltText(mockCharacter.imageAlt);
+      const image = screen.getByAltText(mockCharacter.image.alt);
 
       expect(image).toBeInTheDocument();
-      expect(image).toHaveAttribute("src", mockCharacter.imageUrl);
+      expect(image).toHaveAttribute("src", mockCharacter.image.src);
       expect(screen.getByText(mockCharacter.name)).toBeInTheDocument();
     });
   });
