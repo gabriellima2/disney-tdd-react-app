@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 
 const Character = (props) => {
-  const { _id, imageUrl, name } = props;
+  const { _id, imageUrl, imageAlt, name } = props;
   return (
     <li>
       <a>
-        <img src={imageUrl} alt={`Imagem do personagem ${name}`} />
+        <img src={imageUrl} alt={imageAlt} />
         <h1>{name}</h1>
       </a>
     </li>
@@ -23,11 +23,11 @@ describe("<Character />", () => {
         _id: "01",
         name: "any_name",
         imageUrl: "any_image_url",
+        imageAlt: `any_image_alt`
       };
       renderComponent(character);
 
-      const altImage = `Imagem do personagem ${character.name}`;
-      const image = screen.getByAltText(altImage);
+      const image = screen.getByAltText(character.imageAlt);
 
       expect(image).toBeInTheDocument();
       expect(image).toHaveAttribute("src", character.imageUrl);
