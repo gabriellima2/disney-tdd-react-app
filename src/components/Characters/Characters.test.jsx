@@ -11,7 +11,7 @@ describe("<Characters />", () => {
       renderComponent({ characters: mockCharacters });
       mockCharacters.forEach((character) => {
         const { name, imageUrl } = character;
-        const image = screen.getByAltText(`any_image_alt`);
+        const image = screen.getByAltText(`Imagem do personagem ${name}`);
 
         expect(image).toBeInTheDocument();
         expect(image).toHaveAttribute("src", imageUrl);

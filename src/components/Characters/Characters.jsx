@@ -1,12 +1,16 @@
+import { Character } from "./components";
+
 export const Characters = (props) => {
-  const { characters } = props;
+  const { characters, className } = props;
   return (
-    <ul>
+    <ul className={className}>
       {characters.map((character) => (
-        <li key={character._id}>
-          <img src={character.imageUrl} alt="any_image_alt" />
-          <h1>{character.name}</h1>
-        </li>
+        <Character
+          key={character._id}
+          id={character._id}
+          name={character.name}
+          image={{ src: character.imageUrl, alt: `Imagem do personagem ${character.name}` }}
+        />
       ))}
     </ul>
   );
