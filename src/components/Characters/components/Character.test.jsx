@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { mockCharacter } from "../mocks/mock-character";
 
 const Character = (props) => {
   const { _id, imageUrl, imageAlt, name } = props;
@@ -19,19 +20,13 @@ const renderComponent = (props) => render(
 describe("<Character />", () => {
   describe("Render", () => {
     it("should render correctly", () => {
-      const character = {
-        _id: "01",
-        name: "any_name",
-        imageUrl: "any_image_url",
-        imageAlt: `any_image_alt`
-      };
-      renderComponent(character);
+      renderComponent(mockCharacter);
 
-      const image = screen.getByAltText(character.imageAlt);
+      const image = screen.getByAltText(mockCharacter.imageAlt);
 
       expect(image).toBeInTheDocument();
-      expect(image).toHaveAttribute("src", character.imageUrl);
-      expect(screen.getByText(character.name)).toBeInTheDocument();
+      expect(image).toHaveAttribute("src", mockCharacter.imageUrl);
+      expect(screen.getByText(mockCharacter.name)).toBeInTheDocument();
     });
   });
 });
