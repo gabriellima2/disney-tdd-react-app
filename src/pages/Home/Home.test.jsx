@@ -1,7 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { useFetch } from "../../hooks/use-fetch";
-import { mockError } from "../../__mocks__/mock-error";
+import { render, screen } from "@testing-library/react";
+
 import { mockCharacters } from "../../__mocks__/mock-characters";
+import { mockError } from "../../__mocks__/mock-error";
+import { useFetch } from "../../hooks/use-fetch";
 
 export const Home = (props) => {
   const { service } = props;
@@ -17,12 +18,16 @@ export const Home = (props) => {
   );
 }
 
+vitest.mock("../../hooks/use-fetch");
+
 const characterService = vitest.fn();
 const renderComponent = () => render(<Home service={characterService} />);
 
-vitest.mock("../../hooks/use-fetch");
-
 describe("<Home />", () => {
+  beforeAll(() => {
+    vitest.clearAllMocks();
+  })
+
   describe("Render", () => {
     it("should render loading", () => {
       useFetch.mockReturnValue({ isLoading: true, isError: false, error: null, data: null });
