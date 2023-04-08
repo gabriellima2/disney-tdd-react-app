@@ -5,12 +5,17 @@ import { useFetch } from "../../hooks/use-fetch";
 import { Home } from "./Home";
 
 import { mockCharactersService } from "../../__mocks__/mock-characters-service";
+import { WithBrowserRouter } from "../../__mocks__/with-browser-router";
 import { mockCharacters } from "../../__mocks__/mock-characters";
 import { mockError } from "../../__mocks__/mock-error";
 
 vitest.mock("../../hooks/use-fetch");
 
-const renderComponent = () => render(<Home service={mockCharactersService} />);
+const renderComponent = () => render(
+  <WithBrowserRouter>
+    <Home service={mockCharactersService} />
+  </WithBrowserRouter>
+);
 
 describe("<Home />", () => {
   beforeAll(() => {
@@ -36,7 +41,7 @@ describe("<Home />", () => {
       expect(screen.queryByTestId("content")).not.toBeInTheDocument();
     });
     it("should render character list", () => {
-      useFetch.mockReturnValue({ isLoading: false, isError: false, error: null, data: mockCharacters });
+      useFetch.mockReturnValue({ isLoading: false, isError: false, error: null, data: { data: mockCharacters } });
       renderComponent();
 
       expect(screen.queryByTestId("loading")).not.toBeInTheDocument();

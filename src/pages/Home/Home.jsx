@@ -1,15 +1,19 @@
 import { useFetch } from "../../hooks/use-fetch";
 
+import { Characters } from "../../components/Characters";
+import { Loading } from "../../components/Loading";
+import { Error } from "../../components/Error";
+
 export const Home = (props) => {
   const { service } = props;
   const { isError, isLoading, error, data } = useFetch(service.getAll);
-  if (isLoading) return <h1 data-testid="loading"></h1>;
-  if (isError) return <h1 data-testid="error">{error.message}</h1>
+
+  if (isLoading) return <Loading />
+  if (isError) return <Error message={error.message} />
+
   return (
     <main data-testid="content">
-      <ul>
-        {data.map((character) => <li>{character.name}</li>)}
-      </ul>
+      <Characters characters={data.data} />
     </main>
   );
 }
