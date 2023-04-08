@@ -1,9 +1,15 @@
 import { render, screen } from "@testing-library/react";
 
 import { Characters } from ".";
-import { mockCharacters } from "./mocks/mock-characters";
 
-const renderComponent = (props) => render(<Characters {...props} />);
+import { WithBrowserRouter } from "../../__mocks__/with-browser-router";
+import { mockCharacters } from "../../__mocks__/mock-characters";
+
+const renderComponent = (props) => render(
+  <WithBrowserRouter>
+    <Characters {...props} />
+  </WithBrowserRouter>
+);
 
 describe("<Characters />", () => {
   describe("Render", () => {

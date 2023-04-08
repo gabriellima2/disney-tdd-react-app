@@ -1,14 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from 'react-router-dom';
 import userEvent from "@testing-library/user-event";
 
 import { Character } from ".";
-import { mockCharacter } from "../mocks/mock-character";
+
+import { WithBrowserRouter } from "../../../__mocks__/with-browser-router";
+import { mockCharacter } from "../../../__mocks__/mock-character";
 
 const renderComponent = (props) => render(
-  <BrowserRouter>
+  <WithBrowserRouter>
     <Character {...props} />
-  </BrowserRouter>  
+  </WithBrowserRouter>  
 );
 
 const makeTitle = (name) => `Ver detalhes de ${name}`;
