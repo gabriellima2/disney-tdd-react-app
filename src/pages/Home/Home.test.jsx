@@ -1,27 +1,16 @@
 import { render, screen } from "@testing-library/react";
 
-import { mockCharacters } from "../../__mocks__/mock-characters";
-import { mockError } from "../../__mocks__/mock-error";
 import { useFetch } from "../../hooks/use-fetch";
 
-export const Home = (props) => {
-  const { service } = props;
-  const { isError, isLoading, error, data } = useFetch(service);
-  if (isLoading) return <h1 data-testid="loading"></h1>;
-  if (isError) return <h1 data-testid="error">{error.message}</h1>
-  return (
-    <main data-testid="content">
-      <ul>
-        {data.map((character) => <li>{character.name}</li>)}
-      </ul>
-    </main>
-  );
-}
+import { Home } from "./Home";
+
+import { mockCharactersService } from "../../__mocks__/mock-characters-service";
+import { mockCharacters } from "../../__mocks__/mock-characters";
+import { mockError } from "../../__mocks__/mock-error";
 
 vitest.mock("../../hooks/use-fetch");
 
-const characterService = vitest.fn();
-const renderComponent = () => render(<Home service={characterService} />);
+const renderComponent = () => render(<Home service={mockCharactersService} />);
 
 describe("<Home />", () => {
   beforeAll(() => {
