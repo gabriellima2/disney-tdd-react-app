@@ -6,10 +6,10 @@ import { Error } from "../../components/Error";
 
 export const Home = (props) => {
   const { service } = props;
-  const { isError, isLoading, error, data } = useFetch(service.getAll);
+  const { isError, isLoading, error, data } = useFetch(() => service.getAll());
 
   if (isLoading) return <Loading />
-  if (isError) return <Error message={error.message} />
+  if (isError) return <Error message={error.message || error} />
 
   return (
     <main data-testid="content">
