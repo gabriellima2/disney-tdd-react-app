@@ -5,7 +5,7 @@ export class CharactersServices {
     this.url = url;
   }
 
-  async getAll(endpoint = "characters") {
+  async getAll(endpoint = "character") {
     const response = await fetch(`${this.url}${endpoint}`, { method: "GET" });
     if (!response.ok) throw new BadRequestError();
     const data = await response.json();
