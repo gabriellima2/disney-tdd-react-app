@@ -1,17 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { mockInfos } from "../mocks/mock-infos";
 
-const AdditionalInfos = (props) => {
-  const { title, infos } = props;
-  return (
-    <section>
-      <h2>{title}</h2>
-      <ul>
-        {infos.map((info) => <li key={info}>{info}</li>)}
-      </ul>
-    </section>
-  );
-}
+import { AdditionalInfos } from ".";
+import { mockInfos } from "../mocks/mock-infos";
 
 const TITLE = "any_title";
 const renderComponent = () => render(<AdditionalInfos title={TITLE} infos={mockInfos} />);
