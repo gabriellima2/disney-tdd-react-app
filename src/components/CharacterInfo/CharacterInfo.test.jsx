@@ -1,23 +1,7 @@
 import { render, screen } from "@testing-library/react";
 
-import { AdditionalInfos } from "./components";
+import { CharacterInfo } from "./CharacterInfo";
 import { mockCharacterInfo } from "./mocks/mock-character-info";
-
-const CharacterInfo = (props) => {
-  const { image, name, films, videoGames } = props;
-  return (
-    <article>
-      <img src={image.src} alt={image.alt} />
-      <section>
-        <h1>{name}</h1>
-        <div>
-          <AdditionalInfos title="Filmes" infos={films} />
-          <AdditionalInfos title="Video Games" infos={videoGames} />
-        </div>
-      </section>
-    </article>
-  );
-}
 
 const FILMS_TITLE = "Filmes";
 const VIDEO_GAMES_TITLE = "Video Games";
