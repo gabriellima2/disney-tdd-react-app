@@ -1,1 +1,1 @@
-export { Details } from "./Details.test";
+export { Details } from "./Details";
