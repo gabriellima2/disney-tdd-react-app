@@ -1,11 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { useParams } from "react-router-dom";
+import "react-router-dom";
+
 import { useFetch } from "../../hooks/use-fetch";
+
+import { Details } from "./Details";
+
 import { mockCharactersService } from "../../__mocks__/mock-characters-service";
-import { Loading } from "../../components/Loading";
-import { Error } from "../../components/Error";
-import { mockError } from "../../__mocks__/mock-error";
 import { mockCharacters } from "../../__mocks__/mock-characters";
+import { mockError } from "../../__mocks__/mock-error";
 
 vi.mock("react-router-dom", () => ({
   ...vi.importActual("react-router-dom"),
@@ -13,21 +15,6 @@ vi.mock("react-router-dom", () => ({
 }));
 
 vi.mock("../../hooks/use-fetch");
-
-export const Details = (props) => {
-  const { service } = props;
-  const { id } = useParams();
-  const { isLoading, isError, error, data } = useFetch(() => service.getById(id));
-
-  if (isLoading) return <Loading />
-  if (isError) return <Error message={error.message || error} />
-
-  return (
-    <main data-testid="content">
-      <p>{data.name}</p>
-    </main>
-  )
-}
 
 const character = { ...mockCharacters[0], _id: 1 }
 const renderComponent = () => render(<Details service={mockCharactersService} />);
