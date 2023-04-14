@@ -13,4 +13,13 @@ export class CharactersServices {
     const data = await response.json();
     return data;
   }
+
+  async getById(id) {
+    const endpoint = "character";
+    const url = `${this.baseUrl}${endpoint}/${id}`;
+    const response = await fetch(url, { method: "GET" });
+    if (!response.ok) throw new BadRequestError();
+    const data = await response.json();
+    return data;
+  }
 }
