@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import { useFetch } from "../../hooks/use-fetch";
 
+import { CharacterInfo } from "../../components/CharacterInfo";
 import { Loading } from "../../components/Loading";
 import { Error } from "../../components/Error";
 
@@ -15,7 +16,12 @@ export const Details = (props) => {
 
   return (
     <main data-testid="content">
-      <p>{data.name}</p>
+      <CharacterInfo
+        name={data.name}
+        films={data.films}
+        videoGames={data.videoGames}
+        image={{ src: data.imageUrl, alt: `Imagem do personagem ${data.name}` }}
+      />
     </main>
   );
 }
