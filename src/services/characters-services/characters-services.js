@@ -1,12 +1,14 @@
 import { BadRequestError } from "../helpers/errors";
 
 export class CharactersServices {
-  constructor(url) {
-    this.url = url;
+  constructor(baseUrl) {
+    this.baseUrl = baseUrl;
   }
 
-  async getAll(endpoint = "character") {
-    const response = await fetch(`${this.url}${endpoint}`, { method: "GET" });
+  async getAll() {
+    const endpoint = "character";
+    const url = `${this.baseUrl}${endpoint}`;
+    const response = await fetch(url, { method: "GET" });
     if (!response.ok) throw new BadRequestError();
     const data = await response.json();
     return data;
