@@ -5,13 +5,15 @@ import { Details } from "../pages/Details";
 
 import { makeCharactersServices } from "../services/characters-services";
 
+const characterService = makeCharactersServices();
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home service={makeCharactersServices()} />,
+    element: <Home service={characterService} />,
   },
   {
     path: "details/:id",
-    element: <Details />
+    element: <Details service={characterService} />
   }
 ]);
