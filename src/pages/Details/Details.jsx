@@ -13,14 +13,15 @@ export const Details = (props) => {
 
   if (isLoading) return <Loading />
   if (isError) return <Error message={error.message || error} />
+  const character = data.data;
 
   return (
     <main data-testid="content">
       <CharacterInfo
-        name={data.name}
-        films={data.films}
-        videoGames={data.videoGames}
-        image={{ src: data.imageUrl, alt: `Imagem do personagem ${data.name}` }}
+        name={character.name}
+        films={character.films}
+        videoGames={character.videoGames}
+        image={{ src: character.imageUrl, alt: `Imagem do personagem ${character.name}` }}
       />
     </main>
   );
